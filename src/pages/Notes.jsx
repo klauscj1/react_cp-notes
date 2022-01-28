@@ -45,6 +45,13 @@ export const Notes = () => {
     }
   };
 
+  const handlerCloseNote = (note) => {
+    console.log("selectedNote", note);
+    const updateNote = { ...note, close: true };
+    console.log("updateNote", updateNote);
+    //TODO: Actualizar el estado (notes,setNotes)
+  };
+
   return (
     <div className="flex flex-row h-screen ">
       <div className="w-2/5 bg-gray-50	h-full px-6 pt-4 ">
@@ -106,7 +113,10 @@ export const Notes = () => {
                 {note.close ? (
                   <p className="text-green-600 text-sm">Cerrada</p>
                 ) : (
-                  <button className="bg-green-600 py-2 px-3 h-3/5 rounded-md text-white hover:bg-green-700">
+                  <button
+                    className="bg-green-600 py-2 px-3 h-3/5 rounded-md text-white hover:bg-green-700"
+                    onClick={() => handlerCloseNote(note)}
+                  >
                     Close
                   </button>
                 )}
