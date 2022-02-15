@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Users = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,6 +21,19 @@ export const Users = () => {
         console.error("aqui esta el error", error);
         setLoading(false);
       });
+
+    return () => {
+      setUsers([]);
+      setLoading(true);
+    };
+  }, []);
+
+  //comprobar que se tenga token en el localstorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
   }, []);
 
   return (

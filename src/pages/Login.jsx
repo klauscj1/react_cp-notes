@@ -11,12 +11,13 @@ export const Login = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-row justify-center content-center w-full  align-middle">
       <button
         onClick={() => {
           localStorage.setItem("token", "123345");
           navigator("/");
         }}
+        className="bg-blue-700 text-white py-4 px-5 "
       >
         Login
       </button>

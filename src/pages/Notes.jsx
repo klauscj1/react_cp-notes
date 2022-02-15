@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { NoteForm } from "../components/NoteForm";
 import { NoteList } from "../components/NoteList";
 export const Notes = () => {
+  const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
 
   const [formValues, setFormValues] = useState({
@@ -79,6 +81,14 @@ export const Notes = () => {
       })
     );
   };
+
+  //comprobar que se tenga token en el localstorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <div className="flex flex-row h-screen ">
